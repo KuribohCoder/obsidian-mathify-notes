@@ -1,4 +1,4 @@
-# Mathify Notes — vault test note (v1.5.0)
+# Mathify Notes — vault test note (v1.6.3)
 
 Copy this entire file into a new note. Live Preview on. Convert-as-you-type ON. Chemistry ON. English logic words OFF.
 Type a space at the end of each unmarked line (or run Convert math shorthand in current line).

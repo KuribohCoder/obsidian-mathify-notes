@@ -1,5 +1,24 @@
 # Changelog
 
+## 1.6.3
+
+Fixes broken releases 1.6.0 to 1.6.2: their main.js was incomplete, so the plugin did not load. Rebuilt from the last working converter (1.5.0) with these fixes:
+
+- ISO-style dates (`2026/09/18`) are protected, not turned into fractions
+- Decimals stay put: `2.0/3.1` is not a fraction
+- All-caps words (`ISO`, `OK`) and element-only words (`NaCl`) need a digit, charge, bracket or state to convert
+- Complex ions: `[Cu(NH3)4]2+` with brackets outside `\text`, charge after `)` or `]`
+- `e-` becomes an electron; `e-mail` is untouched
+- Any derivative: `dT/dt`, `dx/dt`
+- `sin(x)`, `log(x)` keep their parentheses inside math
+- `cup` and `member` only convert with English logic words on
+- HTML comments, `\(...\)` and `\[...\]` are protected
+- Only text before the cursor is converted while typing
+- Fences with `~~~` and frontmatter are detected properly
+- New commands: convert selection, convert whole note (one undo step)
+- Release workflow now refuses to publish a truncated main.js and runs tests/run.cjs
+# Changelog
+
 ## 1.6.0
 
 Chemistry is a real parser now, not a single greedy regex.

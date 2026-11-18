@@ -1,4 +1,4 @@
-# Mathify Notes — User guide (v1.5.0)
+# Mathify Notes — User guide (v1.6.3)
 
 This is the full instruction book for the plugin. Use it to install, teach someone else, or decide if a conversion is a bug.
 
@@ -20,7 +20,7 @@ If something converted that should not have, wrap it in backticks or turn the ma
 
 ## 2. Install
 
-Requirements: Obsidian 0.15.0+. Release **1.5.0** assets: `main.js`, `manifest.json`, `styles.css`.
+Requirements: Obsidian 0.15.0+. Release **1.6.3** assets: `main.js`, `manifest.json`, `styles.css`.
 
 ### BRAT (recommended)
 
@@ -71,7 +71,7 @@ Setting **Chemistry formulas** must be on.
 | `H2O(l)` `CO2(g)` `NaCl(s)` `HCl(aq)` | states |
 | `H2 + O2 --> H2O` | reaction |
 
-Need a digit, charge, parentheses, or state. `CO` stays `CO`. `CO2` converts. Prefer `SO4^2-` if `SO42-` looks wrong.
+Need a digit, charge, brackets, or state. `CO`, `NaCl`, `ISO` stay words. `CO2`, `[Cu(NH3)4]2+`, `Fe3+`, `e-` convert. Prefer `SO4^2-` if `SO42-` looks wrong.
 
 ## 5. Math
 
@@ -87,9 +87,9 @@ Need a digit, charge, parentheses, or state. `CO` stays `CO`. `CO2` converts. Pr
 | `!=` `<=` `>=` `~~` `+-` | ≠ ≤ ≥ ≈ ± |
 | `pi` `theta` `inf` `deg` `ohm` | π θ ∞ ° Ω |
 | `log(x)` `sin(` `cos(` `tan(` | functions |
-| `therefore` `subset` `member` `notin` | ∴ ⊂ ∈ ∉ |
+| `therefore` `subset` `notin` | ∴ ⊂ ∈ ∉ |
 
-**English logic words** are **off** by default: `because`, `union`, `intersect`, `cap`, `beta`.
+**English logic words** are **off** by default: `because`, `union`, `cup`, `intersect`, `cap`, `member`, `beta`.
 
 Dates must stay dates. If `12/03/2026` becomes a fraction, that is a bug.
 
@@ -126,10 +126,10 @@ Fenced code and YAML frontmatter also stay plain.
 | Nothing converts | Enabled? Live convert on? Not in a code block? |
 | Chemistry skipped | Chemistry on? Need a digit/charge/state |
 | `because` became a symbol | Turn English logic words off |
-| Date became a fraction | Confirm 1.5.0; report the string |
+| Date became a fraction | Confirm 1.6.3; report the string |
 | Double `$$` | Undo |
-| BRAT old | Check release 1.5.0 has the three assets |
-| Store not on 1.5.0 | Wait for Completed on the dashboard |
+| BRAT old | Check the latest release has the three assets |
+| Store not on 1.6.3 | Wait for Completed on the dashboard |
 
 ## 10. Release assets
 

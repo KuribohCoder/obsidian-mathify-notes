@@ -126,7 +126,7 @@ function buildRules(settings) {
 		{ regex: /(?<![\d.\/])(\d{1,2})\s*\/\s*(\d{1,2})\s*\/\s*(\d{1,2})(?![\d.\/])/g, replacer: (m, a, b, c) => `$\\frac{\\frac{${a}}{${b}}}{${c}}$` },
 		{ regex: /(?<![\d.\/])(\d{1,3})\s*\/\s*(\d{1,3})(?![\d.\/])/g, replacer: (m, a, b) => `$\\frac{${a}}{${b}}$` },
 		{ regex: /\bd([A-Za-z])\s*\/\s*d([A-Za-z])\b/g, replacer: (m, a, b) => `$\\frac{d${a}}{d${b}}$` },
-		{ regex: /(?<![\w\/])([a-zA-Z])\s*\/\s*([a-zA-Z])(?![\w\/])/g, replacer: (m, a, b) => `$\\frac{${a}}{${b}}$` },
+		{ regex: /(?<![\w\/])([a-zA-Z])\s*\/\s*([a-zA-Z])(?![\w\/])/g, replacer: (m, a, b) => (m.toLowerCase() === 'e/o' ? m : `$\\frac{${a}}{${b}}$`) },
 		{ regex: /\broot\(([^,()]+)\s*,\s*([^()]+)\)/g, replacer: (m, i, r) => `$\\sqrt[${i.trim()}]{${r.trim()}}$` },
 		{ regex: /\bsqrt\(([^()]+)\)/g, replacer: (m, c) => `$\\sqrt{${c}}$` },
 		{ regex: /<=>/g, replacer: '$\\rightleftharpoons$' },
@@ -155,11 +155,11 @@ function buildRules(settings) {
 		);
 	}
 	rules.push(
-		{ regex: /\b([a-zA-Z0-9]+)\^([a-zA-Z0-9-]+)\b/g, replacer: (m, b, e) => `$${b}^{${e}}$` },
-		{ regex: /\b([a-zA-Z])_([a-zA-Z0-9]+)\b/g, replacer: (m, b, s) => `$${b}_{${s}}$` },
+		{ regex: /(?<![\p{L}\p{N}])([a-zA-Z0-9]+)\^([a-zA-Z0-9-]+)(?![\p{L}\p{N}])/gu, replacer: (m, b, e) => `$${b}^{${e}}$` },
+		{ regex: /(?<![\p{L}\p{N}])([a-zA-Z])_([a-zA-Z0-9]+)(?![\p{L}\p{N}])/gu, replacer: (m, b, s) => `$${b}_{${s}}$` },
 		{ regex: /\b(sin|cos|tan|log|ln|lim)\(([^()]*)\)/g, replacer: (m, f, a) => `$\\${f}(${a})$` },
-		{ regex: /\b(sin|cos|tan|log|ln|lim)\b(?=\(|_|\^)/g, replacer: (m, f) => `$\\${f}$` },
-		{ regex: /\b(pi|theta|lambda|alpha|gamma|sigma|Sigma|phi|omega|delta|Delta)\b/g, replacer: (m, l) => `$\\${l}$` },
+		{ regex: /(?<![\p{L}\p{N}])(sin|cos|tan|log|ln|lim)(?=\(|_|\^)/gu, replacer: (m, f) => `$\\${f}$` },
+		{ regex: /(?<![\p{L}\p{N}])(pi|theta|lambda|alpha|beta|gamma|sigma|Sigma|phi|omega|delta|Delta)(?![\p{L}\p{N}])/gu, replacer: (m, l) => `$\\${l}$` },
 		{ regex: /\b[oO]hm\b/g, replacer: '$\\Omega$' },
 		{ regex: /\bmicro\b/g, replacer: '$\\mu$' },
 		{ regex: /\bdeg\b/g, replacer: '$^\\circ$' },
@@ -175,7 +175,6 @@ function buildRules(settings) {
 			{ regex: /\bintersect\b|\bcap\b/g, replacer: '$\\cap$' },
 			{ regex: /\bsubset\b/g, replacer: '$\\subset$' },
 			{ regex: /\bmember\b/g, replacer: '$\\in$' },
-			{ regex: /\bbeta\b/g, replacer: '$\\beta$' },
 		);
 	} else {
 		// "subset" is rarely ordinary English, keep it on by default as documented.

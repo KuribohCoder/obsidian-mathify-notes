@@ -159,7 +159,7 @@ function buildRules(settings) {
 		{ regex: /(?<![\p{L}\p{N}])([a-zA-Z])_([a-zA-Z0-9]+)(?![\p{L}\p{N}])/gu, replacer: (m, b, s) => `$${b}_{${s}}$` },
 		{ regex: /\b(sin|cos|tan|log|ln|lim)\(([^()]*)\)/g, replacer: (m, f, a) => `$\\${f}(${a})$` },
 		{ regex: /(?<![\p{L}\p{N}])(sin|cos|tan|log|ln|lim)(?=\(|_|\^)/gu, replacer: (m, f) => `$\\${f}$` },
-		{ regex: /(?<![\p{L}\p{N}])(pi|theta|lambda|alpha|beta|gamma|sigma|Sigma|phi|omega|delta|Delta)(?![\p{L}\p{N}])/gu, replacer: (m, l) => `$\\${l}$` },
+		{ regex: /(?<![\p{L}\p{N}])(pi|theta|lambda|alpha|beta|gamma|sigma|Sigma|phi|omega|delta|Delta|DELTA)(?![\p{L}\p{N}])/gu, replacer: (m, l) => `$\\${l === 'DELTA' ? 'Delta' : l}$` },
 		{ regex: /\b[oO]hm\b/g, replacer: '$\\Omega$' },
 		{ regex: /\bmicro\b/g, replacer: '$\\mu$' },
 		{ regex: /\bdeg\b/g, replacer: '$^\\circ$' },
